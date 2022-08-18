@@ -188,15 +188,15 @@ app.post('/placeOrder', (req, res) => {
     })
 })
 
-app.put('/updateorder/:_id', (req, res) => {
-    let oid = Number(req.params._id);
-    db.collection('orders').updateOne({_id: oid }, {
+app.put('/updateorder/id', (req, res) => {
+    let oid = Number(req.params.id);
+    db.collection('orders').updateOne({orderId: oid }, {
         $set: {
             "status": req.body.status,
             "bank_name": req.body.bank_name,
             "date": req.body.date
         }
-    }, (err, result) => {
+    }, (err, _result) => {
         if (err) throw err;
         res.send('order updated')
     })
